@@ -1,0 +1,77 @@
+
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./apps/api-gateway/Dockerfile
+      target: development
+    command: npm run start:dev api-gateway
+    ports:
+      - '3000:3000'
+
+    depends_on:
+      - auth
+      - user
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules 
+
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: npm run start:dev auth
+    ports:
+      - '3001:3001'
+    depends_on:
+      - postgres
+    env_file: 
+      - ./apps/auth/.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules 
+
+  user:
+    build:
+      context: .
+      dockerfile: ./apps/user/Dockerfile
+      target: development
+    command: npm run start:dev user
+    ports:
+      - '3002:3002'
+    # env_file: 
+    #   - ./apps/user/.env
+    depends_on:
+      - postgres
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules 
+
+  place:
+    build:
+      context: .
+      dockerfile: ./apps/place/Dockerfile
+      target: development
+    command: npm run start:dev place
+    ports:
+      - '3003:3003'
+    depends_on:
+      - postgres
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules 
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: goodtrip
+    ports:
+      - "2345:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
