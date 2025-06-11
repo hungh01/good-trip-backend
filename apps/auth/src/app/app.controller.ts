@@ -1,8 +1,9 @@
 import { Controller, Logger } from '@nestjs/common';
 import { AppService } from './app.service';
-import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
-import { LoginRequest } from './dto/login.request';
-import { RegisterRequest } from './dto/register.request';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+
+
+import { LoginRequest, RegisterRequest } from '@app/type';
 
 @Controller()
 export class AppController {

@@ -1,7 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { LoginRequest } from './dto/login.request';
+import { LoginRequest, RegisterRequest } from '@app/type';
+import { Injectable } from '@nestjs/common';
+
 import { JwtService } from '@nestjs/jwt';
-import { RegisterRequest } from './dto/register.request';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'libs/entities';
 import { Repository } from 'typeorm';

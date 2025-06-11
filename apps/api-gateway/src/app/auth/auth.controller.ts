@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Inject, InternalServerErrorException, Logger, Post, Res, UnauthorizedException } from '@nestjs/common';
-import { LoginRequest } from './dto/login.request';
+
 import { ClientProxy } from '@nestjs/microservices';
 import { catchError, firstValueFrom, timeout } from 'rxjs';
 import { Response } from 'express';
-import { RegisterRequest } from './dto/register.request';
+import { LoginRequest, RegisterRequest } from '@app/type';
 
 @Controller('auth')
 export class AuthController {
@@ -32,7 +32,7 @@ export class AuthController {
         res.cookie('authorization', result.token, {
             httpOnly: true,
             secure: false,
-            sameSite: 'lax', // hoặc 'strict'
+            sameSite: 'lax',
         });
         return res.status(200).json({ message: 'Login successful' });
     }
@@ -62,7 +62,7 @@ export class AuthController {
     logout(@Res() res: Response) {
         res.clearCookie('authorization', {
             httpOnly: true,
-            secure: false, // dùng true nếu ở môi trường production với HTTPS
+            secure: false,
             sameSite: 'lax',
         });
 
