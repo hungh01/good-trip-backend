@@ -14,7 +14,8 @@ services:
       - user
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules 
+      - /usr/src/app/node_modules
+      - shared_uploads:/usr/src/app/public
 
   auth:
     build:
@@ -60,7 +61,8 @@ services:
       - postgres
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules 
+      - /usr/src/app/node_modules
+      - shared_uploads:/usr/src/app/public
 
   postgres:
     image: postgres:15
@@ -75,3 +77,4 @@ services:
 
 volumes:
   pgdata:
+  shared_uploads: 

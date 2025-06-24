@@ -6,3 +6,4 @@ export * from './auth-type/register.request';
 
 export * from './place-type/createPlace.request';
 export * from './place-type/createPlaceType.request';
+export * from './place-type/getPlace.request';

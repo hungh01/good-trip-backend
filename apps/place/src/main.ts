@@ -12,7 +12,11 @@ async function bootstrap() {
       port: 3003,
     },
   });
+
   await app.listen();
   Logger.log('---> Place Service is running on port 3003');
 }
 bootstrap();
+
+
+

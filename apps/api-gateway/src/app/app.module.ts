@@ -5,6 +5,8 @@ import { AuthController } from './auth/auth.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { UserController } from './user/user.controller';
 import { PlaceController } from './place/place.controller';
+import { PlaceTypeController } from './place-type/place-type.controller';
+import { NestjsFormDataModule } from 'nestjs-form-data';
 
 @Module({
   imports: [
@@ -34,8 +36,9 @@ import { PlaceController } from './place/place.controller';
         }
       }
     ]),
+    NestjsFormDataModule,
   ],
-  controllers: [AppController, AuthController, UserController, PlaceController],
+  controllers: [AppController, AuthController, UserController, PlaceController, PlaceTypeController],
   providers: [AppService]
 })
 export class AppModule { }
